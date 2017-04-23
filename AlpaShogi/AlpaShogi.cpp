@@ -147,6 +147,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
             // TODO: HDC を使用する描画コードをここに追加してください...
+
+			// ↓↓↓ ADD chapter1
+			HDC hdc_memory = CreateCompatibleDC(hdc); // メモリデバイスコンテキスト
+			HBITMAP hbitmap = (HBITMAP)LoadImage(hInst, L"SHOGIBANBMP", IMAGE_BITMAP, 0, 0, 0); // ビットマップのハンドルを取得
+
+			SelectObject(hdc_memory, hbitmap); // メモリデバイスコンテキストにビットマップを準備
+			StretchBlt(hdc, 150, 50, 333 * 1.5, 364 * 1.5, hdc_memory, 0, 0, 333, 364, SRCCOPY); // スクリーンに転送
+
+			DeleteDC(hdc_memory);
+			DeleteObject(hbitmap);
+			// ↑↑↑ ADD chapter1
+
             EndPaint(hWnd, &ps);
         }
         break;

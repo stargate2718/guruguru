@@ -154,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="AlpaShogi.rc" />
+    <ResourceCompile Include="bitmap.rc" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="AlpaShogi.ico" />
